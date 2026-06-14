@@ -1,45 +1,56 @@
 # flight-scrapper
 
-Chrome Extension that scans Google Flights for the cheapest prices across a selected month. Triggered manually from the popup — runs only when Chrome is open.
+Chrome Extension that scans Google Flights for the cheapest prices across selected months. Triggered manually from the popup — runs only when Chrome is open.
 
 ## How It Works
 
-1. User opens the popup and enters origin, destination, trip type, and month(s) to scan
+1. User opens the popup and enters origin, destination, trip type, trip length, and month(s) to scan
 2. Clicks "Scan"
-3. Extension opens a background Google Flights tab and navigates to the price calendar
-4. Content script scrapes all date/price pairs across the selected month(s)
-5. For round-trips, captures the auto-filled return date and price per departure
+3. Extension opens a background Google Flights tab per selected month and navigates to the price calendar
+4. Content script scrapes all date/price pairs within the selected date range
+5. For round-trips, the return date is calculated as departure + trip length
 6. Results return to the popup ranked cheapest first
-7. Background tab closes automatically when done
+7. A ding sounds when the scan completes
+8. Background tabs close automatically when done
 
 ## Popup Inputs
 
-- **Origin** — IATA code (e.g. `YYZ`)
-- **Destination** — IATA code (e.g. `YVR`)
+- **Origin** — IATA code (e.g. `YUL`)
+- **Destination** — IATA code (e.g. `HND`)
 - **Trip type** — One-way or Round-trip
-- **Month(s)** — Multi-select (e.g. July 2026, August 2026)
+- **Trip length** — Slider, 1–52 weeks (round-trip only)
+- **Month(s)** — 4-column grid of upcoming months, tap to select one or more
+
+## Date Range Logic
+
+When multiple months are selected (e.g. September + October), the scraper covers:
+- Start: first day of earliest month − 3 days
+- End: last day of latest month + trip length in days + 3 days
+
+This ensures deals that straddle month boundaries are captured.
 
 ## Results
 
 Sorted table by price (cheapest first):
 
-| Departure | Return | Price | Airline |
-|-----------|--------|-------|---------|
-| Jul 4     | Jul 11 | $189  | WestJet |
+| Departure  | Return     | Price  |     |
+|------------|------------|--------|-----|
+| 2026-09-02 | 2026-09-16 | $1,304 | Book |
 
-Each scan is saved locally so you can compare prices across multiple scans.
+Each scan is saved locally so you can compare across multiple scans.
 
 ## Project Structure
 
 ```
 src/
 ├── background/
-│   └── service-worker.ts    # Tab orchestration, message passing
+│   └── service-worker.ts    # Tab orchestration, date range logic, message passing
 ├── content/
 │   └── flights-scraper.ts   # Price calendar DOM scraping
 ├── popup/
 │   ├── popup.html
-│   ├── popup.ts             # Inputs, scan trigger, results table
+│   ├── main.tsx             # React entry point
+│   ├── App.tsx              # Inputs, scan trigger, results table
 │   └── popup.css
 ├── types/
 │   └── index.ts             # RouteConfig, FlightResult, ScanResult
@@ -50,20 +61,6 @@ public/
 ├── manifest.json
 └── icons/
 ```
-
-## Build Order
-
-1. Project scaffold — Vite + TypeScript + MV3 manifest
-2. Types — `RouteConfig`, `FlightResult`, `ScanResult`
-3. Storage util
-4. Popup UI — inputs + results table
-5. Service worker — tab management + message passing
-6. Content script — price calendar scraping (requires live selector inspection)
-
-## Caveats
-
-- Google Flights DOM selectors change periodically. When scraping breaks, inspect the price calendar page and update selectors in `flights-scraper.ts`.
-- Only runs when Chrome is open and the popup is used to trigger a scan.
 
 ## Setup
 
@@ -83,4 +80,4 @@ npm run dev      # Watch mode
 
 ## Stack
 
-TypeScript · Vite · Chrome Extensions Manifest V3
+TypeScript · React · Vite · Chrome Extensions Manifest V3

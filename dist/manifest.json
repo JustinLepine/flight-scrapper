@@ -3,7 +3,7 @@
   "name": "Flight Scrapper",
   "version": "1.0.0",
   "description": "Scans Google Flights for the cheapest prices across a selected month.",
-  "permissions": ["tabs", "storage", "scripting"],
+  "permissions": ["tabs", "storage", "scripting", "downloads"],
   "host_permissions": ["https://www.google.com/*"],
   "background": {
     "service_worker": "service-worker.js",
