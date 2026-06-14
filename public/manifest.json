@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Flight Scrapper",
+  "version": "1.0.0",
+  "description": "Scans Google Flights for the cheapest prices across a selected month.",
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["https://www.google.com/*"],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/travel/flights*"],
+      "js": ["flights-scraper.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
