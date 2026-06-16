@@ -1,8 +1,150 @@
+.app {
+  padding: 12px;
+  width: 380px;
+  font-family: sans-serif;
+
+  &_title {
+    margin: 0 0 8px;
+  }
+
+  &_tabs {
+    display: flex;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &_tab {
+    padding: 4px 8px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+
+    &--active {
+      border-bottom-color: #1a73e8;
+      color: #1a73e8;
+    }
+  }
+}
+
+.scan {
+  &_inputs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    input {
+      flex: 1;
+      padding: 4px;
+    }
+  }
+
+  &_select {
+    width: 100%;
+    padding: 4px;
+    margin-bottom: 8px;
+  }
+
+  &_trip-length {
+    margin-bottom: 8px;
+
+    &_label {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+  }
+
+  &_months {
+    margin-bottom: 8px;
+
+    &_label {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    &_grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+  }
+
+  &_month {
+    padding: 4px 2px;
+    font-size: 11px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+    user-select: none;
+
+    &--selected {
+      border-color: #1a73e8;
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+  }
+
+  &_error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  &_button {
+    width: 100%;
+    padding: 6px;
+  }
+}
+
+.history {
+  &_toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+
+  &_clear {
+    font-size: 12px;
+    padding: 2px 8px;
+    color: red;
+  }
+
+  &_empty {
+    font-size: 12px;
+    color: #888;
+  }
+
+  &_item {
+    margin-bottom: 16px;
+  }
+
+  &_meta {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+
+    span {
+      float: right;
+    }
+  }
+
+  &_no-results {
+    font-size: 12px;
+    color: #aaa;
+  }
+}
 
 .result {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12;
+  font-size: 12px;
 
   &_header {
     border-bottom: 1px solid #ccc;
@@ -15,6 +157,6 @@
   }
 
   &_book {
-    font-size: 11;
+    font-size: 11px;
   }
 }

@@ -4,7 +4,7 @@ export const TODAY = new Date();
 TODAY.setDate(1);
 TODAY.setHours(0, 0, 0, 0);
 
-export const MONTHS = Array.from({ length: 18 }, (_, i) => {
+export const MONTHS = Array.from({ length: 12 }, (_, i) => {
   const d = new Date(TODAY);
   d.setMonth(TODAY.getMonth() + i);
   return {
