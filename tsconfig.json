@@ -8,5 +8,8 @@
     "skipLibCheck": true,
     "types": ["chrome"]
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*",
+    "globals.d.ts"
+  ]
 }

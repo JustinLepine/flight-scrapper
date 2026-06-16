@@ -1,1 +1,0 @@
-const a="flight_scans";async function t(){const{[a]:c}=await chrome.storage.local.get(a);return c??[]}async function n(c){const s=await t();await chrome.storage.local.set({[a]:[c,...s]})}async function o(){await chrome.storage.local.remove(a)}export{o as c,t as g,n as s};

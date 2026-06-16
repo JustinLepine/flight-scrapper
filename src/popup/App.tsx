@@ -1,45 +1,9 @@
 import { useState, useEffect } from "react";
-import type { RouteConfig, FlightResult, ScanResult, TripType } from "../types";
+import type { RouteConfig, ScanResult, TripType } from "../types";
 import { getScans, clearScans } from "../utils/storage";
-
-const TODAY = new Date();
-TODAY.setDate(1);
-TODAY.setHours(0, 0, 0, 0);
-
-const MONTHS = Array.from({ length: 18 }, (_, i) => {
-  const d = new Date(TODAY);
-  d.setMonth(TODAY.getMonth() + i);
-  return {
-    value: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`,
-    label: d.toLocaleDateString("en-CA", { month: "short", year: "numeric" }),
-  };
-});
-
-function ResultsTable({ results }: { results: FlightResult[] }) {
-  return (
-    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-      <thead>
-        <tr>{["Departure", "Return", "Price", ""].map((h, i) => (
-          <th key={i} style={{ borderBottom: "1px solid #ccc", textAlign: "left", padding: "2px 4px" }}>{h}</th>
-        ))}</tr>
-      </thead>
-      <tbody>
-        {results.map((r, i) => (
-          <tr key={i}>
-            <td style={{ padding: "2px 4px" }}>{r.departure}</td>
-            <td style={{ padding: "2px 4px" }}>{r.return ?? "—"}</td>
-            <td style={{ padding: "2px 4px" }}>${r.price}</td>
-            <td style={{ padding: "2px 4px" }}>
-              {r.url && (
-                <a href={r.url} target="_blank" rel="noreferrer" style={{ fontSize: 11 }}>Book</a>
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+import { ResultsTable } from "../components/ResultsTable";
+import { MONTHS } from "../utils/time";
+import '../styles/global.scss'
 
 export default function App() {
   const [origin, setOrigin] = useState("YUL");

@@ -1,0 +1,20 @@
+
+.result {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12;
+
+  &_header {
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    padding: 2px 4px;
+  }
+
+  &_row {
+    padding: 2px 4px;
+  }
+
+  &_book {
+    font-size: 11;
+  }
+}
