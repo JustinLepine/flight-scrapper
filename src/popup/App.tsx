@@ -10,7 +10,7 @@ export default function App() {
   const [origin, setOrigin] = useState("YUL");
   const [destination, setDestination] = useState("HND");
   const [tripType, setTripType] = useState<TripType>("round-trip");
-  const [tripLengthWeeks, setTripLengthWeeks] = useState(2);
+  const [tripLengthWeeks, setTripLengthWeeks] = useState(12);
   const [months, setMonths] = useState<string[]>([]);
   const [history, setHistory] = useState<ScanResult[]>([]);
   const [tab, setTab] = useState<"scan" | "history">("scan");

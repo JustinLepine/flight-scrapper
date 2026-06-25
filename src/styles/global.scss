@@ -32,11 +32,11 @@ body {
 .scan {
   &_inputs {
     display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
+    margin: 0 0 8px;
+    gap: 5px;
 
     input {
-      flex: 1;
+      width: 100%;
       padding: 4px;
     }
   }

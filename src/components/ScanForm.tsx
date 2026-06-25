@@ -15,11 +15,11 @@ export function ScanForm({ origin, setOrigin, destination, setDestination, tripT
   return (
     <>
       <div className="scan_inputs">
-        <input placeholder="Origin (YYZ)" value={origin} onChange={(e) => setOrigin(e.target.value)} maxLength={3} />
-        <input placeholder="Destination (YVR)" value={destination} onChange={(e) => setDestination(e.target.value)} maxLength={3} />
+        <input id='origin' placeholder="Origin (YYZ)" value={origin} onChange={(e) => setOrigin(e.target.value)} maxLength={3} />
+        <input id='destination' placeholder="Destination (YVR)" value={destination} onChange={(e) => setDestination(e.target.value)} maxLength={3} />
       </div>
 
-      <select className="scan_select" value={tripType} onChange={(e) => setTripType(e.target.value as TripType)}>
+      <select id='trip-type' className="scan_select" value={tripType} onChange={(e) => setTripType(e.target.value as TripType)}>
         <option value="one-way">One-way</option>
         <option value="round-trip">Round-trip</option>
       </select>
