@@ -1,14 +1,22 @@
-body {
+@use './partials' as *;
+
+body, html {
+  width: $app-width;
   margin: 0;
 }
 
 .app {
-  padding: 12px;
-  width: 380px;
-  font-family: sans-serif;
+  width: $app-width;
+  padding: $app-padding;
+  font-family: $app-font;
+
+  border-right: $dev-border;
+  border-bottom: $dev-border;
 
   &_title {
     margin: 0 0 8px;
+    letter-spacing: 2.2px;
+    font-weight: 600;
   }
 
   &_tabs {
@@ -18,13 +26,16 @@ body {
   }
 
   &_tab {
-    padding: 4px 8px;
     cursor: pointer;
+    padding: 4px 8px;
+    letter-spacing: 2.3px;
     border-bottom: 2px solid transparent;
+    transition: border-bottom ease 0.2s;
 
     &--active {
-      border-bottom-color: #1a73e8;
-      color: #1a73e8;
+      border-bottom-color: $color-highlight;
+      color: $color-highlight;
+      font-weight: 600;
     }
   }
 }
@@ -53,7 +64,7 @@ body {
     &_label {
       font-size: 12px;
       color: #555;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     input[type="range"] {
@@ -86,12 +97,17 @@ body {
     border: 1px solid #ddd;
     background: #fff;
     color: #333;
+    transition: 0.15s;
     user-select: none;
 
+    &:hover {
+      background: $color-hover-background;
+    }
+
     &--selected {
-      border-color: #1a73e8;
-      background: #e8f0fe;
-      color: #1a73e8;
+      border-color: $color-highlight;
+      background: $color-highlight-background;
+      color: $color-highlight;
     }
   }
 
@@ -116,7 +132,7 @@ body {
 
   &_clear {
     font-size: 12px;
-    padding: 2px 8px;
+    padding: 4px 10px;
     color: red;
   }
 
